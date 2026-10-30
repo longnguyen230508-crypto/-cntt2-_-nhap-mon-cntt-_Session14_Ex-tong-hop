@@ -1,0 +1,53 @@
+Phần 1 – Thiết lập Hybrid Workflow
+Sự cố mất file khi hỏng ổ cứng: Không xảy ra. Vì mô hình Hybrid Workflow kết hợp Auto Sync tự động đẩy các file mã nguồn/tài liệu lên đám mây theo thời gian thực (real-time background sync), bản cập nhật mới nhất đã được lưu trữ an toàn trên Cloud.
+3 bước thiết lập Auto Sync:
+Bước 1: Cài đặt ứng dụng đồng bộ đám mây (Google Drive for Desktop/OneDrive) và đăng nhập tài khoản.
+Bước 2: Di chuyển toàn bộ thư mục dự án đồ án vào không gian thư mục được đồng bộ của ứng dụng.
+Bước 3: Cấu hình chế độ Always keep on this device cho thư mục dự án và thiết lập ngoại lệ (.syncignore / Selective Sync) để loại bỏ các thư mục rác.
+Thao tác khôi phục file Word: Mở file BaoCao_CuoiKy_SmartCampus.docx trên Google Docs, chọn File > Version history > See version history, sau đó chọn mốc thời gian trước khi bị xóa 2 trang và nhấn Restore this version.
+Xử lý sai lầm lưu node_modules và phim 4K lên Cloud:
+Lỗi 1: Đồng bộ node_modules gây nghẽn băng thông và treo hệ thống Sync. Cách xử lý: Thêm node_modules vào file .syncignore hoặc Selective Sync, tái tạo tại local bằng npm install.
+Lỗi 2: Đồng bộ file phim 4K làm tràn dung lượng Cloud. Cách xử lý: Di chuyển các file giải trí nặng ra ngoài thư mục dự án được đồng bộ.
+Phần 2 – Phân quyền chia sẻ an toàn
+Bảng phân quyền chi tiết:
+BaoCao_CuoiKy_SmartCampus.docx gửi giảng viên:
+Mức quyền: Viewer (hoặc Commenter).
+Phạm vi chia sẻ: Restricted (Nhập chính xác email của giảng viên).
+Giải thích: Đảm bảo giảng viên xem và chấm điểm thuận lợi nhưng không thể vô tình sửa đè nội dung gốc.
+Slide_BaoCao.pptx cho 5 thành viên nhóm:
+Mức quyền: Editor.
+Phạm vi chia sẻ: Restricted (Chia sẻ nội bộ 5 thành viên qua email/tài khoản).
+Giải thích: Cho phép cả nhóm cùng đồng chỉnh sửa slide nhanh chóng trước deadline.
+GopY_BanNhap.docx gửi anh khóa trên:
+Mức quyền: Commenter.
+Phạm vi chia sẻ: Restricted (Chia sẻ trực tiếp email anh khóa trên).
+Giải thích: Cho phép để lại lời nhận xét góp ý trực quan mà không có quyền sửa đổi văn bản gốc.
+ThongTin_CaNhan_NhomVien.xlsx:
+Mức quyền: Viewer (hoặc phân quyền hạn chế tối đa).
+Phạm vi chia sẻ: Restricted (Chỉ cấp quyền cho trưởng nhóm tổng hợp).
+Giải thích: Bảo vệ tuyệt đối thông tin CCCD và SĐT không bị rò rỉ ra ngoài.
+Quy tắc Cờ Đỏ Bảo mật (ThongTin_CaNhan_NhomVien.xlsx): Tuyệt đối không kết hợp Anyone with the link + Editor vì bất kỳ ai có đường link trên không gian mạng đều có quyền truy cập, xem trộm hoặc phá hoại file chứa dữ liệu định danh cá nhân nhạy cảm (CCCD, SĐT), dẫn đến rò rỉ dữ liệu nghiêm trọng.
+2 thao tác bảo mật trong Settings khi cấp quyền Editor cho nhóm:
+Tắt tùy chọn: Editors can change permissions and share (Ngăn thành viên tự ý chia sẻ thêm người ngoài).
+Bật tùy chọn: Disable options to download, print, and copy for commenters and viewers (nếu áp dụng với người xem) hoặc kiểm soát chặt chẽ quyền sở hữu file (Transfer ownership).
+Phần 3 – Tổ chức giao tiếp nhóm chuẩn doanh nghiệp
+3 vấn đề trong đoạn hội thoại:
+Vấn đề 1: Lỗi No-Hello (nhắn câu hỏi lửng lơ "có ai rảnh không" thay vì đi thẳng vào vấn đề).
+Vấn đề 2: Lỗi Spam @all giờ khuya (nhắc nhở lúc 23:47 gây ảnh hưởng tâm lý và giấc ngủ của thành viên).
+Vấn đề 3: Lỗi Tin nhắn không phân luồng (trộn lẫn hình ảnh giải trí mèo mỡ vào kênh công việc chung).
+Đề xuất tối thiểu 2 Channel/Topic:
+#01-thong-bao-chung: Kênh độc quyền của trưởng nhóm để thông báo deadline, tiến độ và quyết định quan trọng.
+#02-thao-luan-code: Kênh chuyên trao đổi kỹ thuật, sửa bug và góp ý slide.
+#03-giai-tri-cuoi-tuan: Kênh riêng để gửi ảnh mèo và tán gẫu.
+Viết lại tin nhắn của Lan theo tư duy Asynchronous:
+"Chào mọi người, em đang gặp vướng mắc ở phần cấu hình API đăng nhập trong file auth.js (dòng 45 bị lỗi CORS). Ai có kinh nghiệm phần này rảnh lúc nào phản hồi giúp em nhé, em để lại mã lỗi ở đây để mọi người tiện xem."
+Viết lại tin nhắn @all lúc 23:47:
+Sử dụng tính năng Schedule Send (Hẹn giờ gửi: 08:00 sáng hôm sau).
+Nội dung: "Chào buổi sáng [Tên_Thành_Vien_1] và [Tên_Thành_Vien_2], deadline nộp báo cáo là hôm nay. Hai bạn kiểm tra lại phần nội dung của mình và cập nhật lên Drive trước 14:00 chiều nay giúp nhóm nhé!"
+Phần 4 – Thông báo tổng hợp
+Kênh: #thong-bao
+"Chào cả nhóm, mình đã hoàn tất các thiết lập quan trọng để chạy nước rút cho đồ án:
+Đã bật Auto Sync cho thư mục dự án để đồng bộ tự động và bảo vệ dữ liệu trên Cloud.
+Đã chia sẻ file báo cáo cuối kỳ cho giảng viên hướng dẫn ở quyền Viewer (Restricted) an toàn tuyệt đối.
+
+@[Tên_Bạn_Chưa_Xong] và @[Tên_Bạn_Chưa_Xong] kiểm tra lại tiến độ phần nội dung báo cáo còn thiếu và cập nhật lên Drive sớm nhé!"
